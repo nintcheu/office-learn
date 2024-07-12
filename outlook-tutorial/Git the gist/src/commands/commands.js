@@ -13,6 +13,7 @@ function showError(error) {
   });
 }
 
+
 let settingsDialog;
 
 function insertDefaultGist(event) {

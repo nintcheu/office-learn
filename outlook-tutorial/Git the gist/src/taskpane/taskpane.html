@@ -18,8 +18,6 @@
 </head>
 
 <body class="ms-font-l ms-landing-page">
-  <!-- The following image URL tracks diagnostic data for this sample add-in. Please remove the image tag if you reuse this sample in your own code project. -->
-  <img src="https://pnptelemetry.azurewebsites.net/pnp-officeaddins/samples/office-outlook-add-in-tutorial-run" />
 
   <main class="ms-landing-page__main">
     <section class="ms-landing-page__content ms-font-m ms-fontColor-neutralPrimary">
@@ -35,13 +33,18 @@
       </div>
       <div id="error-display" style="display: none;" class="ms-u-borderBase ms-fontColor-error ms-font-m ms-bgColor-error ms-borderColor-error">
       </div>
+      <!-- Persistent information notification message component -->
+      <div class="ms-TextField">
+        <input id="notificationId" class="ms-TextField-field" type="text" value=" " placeholder="" style="display: none;">
+      </div>
+
     </section>
     <button class="ms-Button ms-Button--primary" id="insert-button" tabindex=0 disabled>
-      <span class="ms-Button-label">Insert</span>
+      <span class="ms-Button-label">Insert email template</span>
     </button>
 
     <button class="ms-Button ms-Button--primary" id="verify-content-button" tabindex=0 enabled>
-      <span class="ms-Button-label">Verify sensitive information</span>
+      <span class="ms-Button-label">Verify sensitive data</span>
     </button>
   </main>
   <footer class="ms-landing-page__footer ms-bgColor-themePrimary">
