@@ -43,6 +43,13 @@
         });
       });
 
+      //When verify-content-button is selected, get the content of the email body
+      $('#verify-content-button').on('click', function(){
+      
+            showError('We found sensitive data in your email. Please refer to the policy 101, then take action');
+       
+      });
+
       // When the settings icon is selected, open the settings dialog.
       $('#settings-icon').on('click', function(){
         // Display settings dialog.
