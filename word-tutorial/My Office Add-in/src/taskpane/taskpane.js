@@ -10,18 +10,24 @@ Office.onReady((info) => {
     // Assign event handlers and other initialization logic.
     document.getElementById("insert-paragraph").onclick = () => tryCatch(insertParagraph);
     document.getElementById("validate-paragraph").onclick = () => tryCatch(checkSensitviteInformation);
+    document.getElementById("insert-annotations").onclick = () => tryCatch(insertAnnotations);
+    document.getElementById("insert-html").onclick = () => tryCatch(insertHTML);
+    document.getElementById("insert-image").onclick = () => tryCatch(insertImage);
+    document.getElementById("insert-table").onclick = () => tryCatch(insertTable);
 
+
+
+/*
     document.getElementById("apply-style").onclick = () => tryCatch(applyStyle);
     document.getElementById("apply-custom-style").onclick = () => tryCatch(applyCustomStyle);
     document.getElementById("change-font").onclick = () => tryCatch(changeFont);
     document.getElementById("insert-text-into-range").onclick = () => tryCatch(insertTextIntoRange);
     document.getElementById("insert-text-outside-range").onclick = () => tryCatch(insertTextBeforeRange);
     document.getElementById("replace-text").onclick = () => tryCatch(replaceText);
-    document.getElementById("insert-image").onclick = () => tryCatch(insertImage);
-    document.getElementById("insert-html").onclick = () => tryCatch(insertHTML);
-    document.getElementById("insert-table").onclick = () => tryCatch(insertTable);
     document.getElementById("create-content-control").onclick = () => tryCatch(createContentControl);
     document.getElementById("replace-content-in-control").onclick = () => tryCatch(replaceContentInControl);
+  */
+
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
   }
@@ -32,9 +38,9 @@ async function insertParagraph() {
 
     const docBody = context.document.body;
     docBody.insertParagraph("John's SSN is 123-45-6789 and his credit card number is 4111111111111111. He was born on 05/12/1980",
-                            Word.InsertLocation.start);
+      Word.InsertLocation.start);
 
-      await context.sync();
+    await context.sync();
   });
 
 }
@@ -42,10 +48,10 @@ async function insertParagraph() {
 /** Default helper for invoking an action and handling errors. */
 async function tryCatch(callback) {
   try {
-      await callback();
+    await callback();
   } catch (error) {
-      // Note: In a production add-in, you'd want to notify the user through your add-in's UI.
-      console.error(error);
+    // Note: In a production add-in, you'd want to notify the user through your add-in's UI.
+    console.error(error);
   }
 }
 
@@ -55,7 +61,7 @@ async function applyStyle() {
     const firstParagraph = context.document.body.paragraphs.getFirst();
     firstParagraph.styleBuiltIn = Word.Style.intenseReference;
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -65,7 +71,7 @@ async function applyCustomStyle() {
     const lastParagraph = context.document.body.paragraphs.getLast();
     lastParagraph.style = "MyCustomStyle";
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -74,12 +80,12 @@ async function changeFont() {
 
     const secondParagraph = context.document.body.paragraphs.getFirst().getNext();
     secondParagraph.font.set({
-            name: "Courier New",
-            bold: true,
-            size: 18
-        });
+      name: "Courier New",
+      bold: true,
+      size: 18
+    });
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -93,9 +99,9 @@ async function insertTextIntoRange() {
     originalRange.load("text");
     await context.sync();
 
-      doc.body.insertParagraph("Original range: " + originalRange.text, Word.InsertLocation.end);
+    doc.body.insertParagraph("Original range: " + originalRange.text, Word.InsertLocation.end);
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -108,9 +114,9 @@ async function insertTextBeforeRange() {
 
     originalRange.load("text");
     await context.sync();
-    
+
     doc.body.insertParagraph("Current text of original range: " + originalRange.text, Word.InsertLocation.end);
-    
+
     await context.sync();
 
   });
@@ -123,7 +129,7 @@ async function replaceText() {
     const originalRange = doc.getSelection();
     originalRange.insertText("many", Word.InsertLocation.replace);
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -132,7 +138,7 @@ async function insertImage() {
 
     context.document.body.insertInlinePictureFromBase64(base64Image, Word.InsertLocation.end);
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -142,7 +148,7 @@ async function insertHTML() {
     const blankParagraph = context.document.body.paragraphs.getLast().insertParagraph("", Word.InsertLocation.after);
     blankParagraph.insertHtml('<p style="font-family: verdana;">Inserted HTML.</p><p>Another paragraph</p>', Word.InsertLocation.end);
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -155,10 +161,10 @@ async function insertTable() {
       ["Name", "ID", "Birth City"],
       ["Bob", "434", "Chicago"],
       ["Sue", "719", "Havana"],
-  ];
-secondParagraph.insertTable(3, 3, Word.InsertLocation.after, tableData);
+    ];
+    secondParagraph.insertTable(3, 3, Word.InsertLocation.after, tableData);
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -172,7 +178,7 @@ async function createContentControl() {
     serviceNameContentControl.appearance = "Tags";
     serviceNameContentControl.color = "blue";
 
-      await context.sync();
+    await context.sync();
   });
 }
 
@@ -182,73 +188,102 @@ async function replaceContentInControl() {
     const serviceNameContentControl = context.document.contentControls.getByTag("serviceName").getFirst();
     serviceNameContentControl.insertText("Fabrikam Online Productivity Suite", Word.InsertLocation.replace);
 
-      await context.sync();
+    await context.sync();
   });
 }
 
-      //When verify-content-button is selected, get the content of the email body
-      async function checkSensitviteInformation () {
-        //addInformational("Any sensitive data found in your mail. Great job! You respect our policies.");
-        //showError("You found sensitive date in your mail. You don't respect the policies. Please, take action to correct the issue.");
+//When verify-content-button is selected, get the content of the email body
+async function checkSensitviteInformation() {
+  //addInformational("Any sensitive data found in your mail. Great job! You respect our policies.");
+  //showError("You found sensitive date in your mail. You don't respect the policies. Please, take action to correct the issue.");
 
-      // Gets the text content of the body.
-      // Run a batch operation against the Word object model.
-        await Word.run(async (context) => {
+  // Gets the text content of the body.
+  // Run a batch operation against the Word object model.
+  await Word.run(async (context) => {
 
-            //if (result.status == "succeeded") {
+    //if (result.status == "succeeded") {
 
-              const patterns = {
-                ssn: /\b(?!000|666|9\d{2})([0-8]\d{2}|7([0-6]\d|7[012]))([-]?)\d{2}\3\d{4}\b/,
-                creditCard: /\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})\b|\b(?:(?:4[0-9]{3}|5[1-5][0-9]{2}|6[0-9]{3}|3[47][0-9]{2})[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4})\b/,
-                dateOfBirth: /\b(0[1-9]|1[0-2])[/-](0[1-9]|[12]\d|3[01])[/-](19|20)\d{2}\b/,
-                email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/,
-                phoneNumber: /\b(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b/,
-                ipAddress: /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/,
-                passportNumber: /\b[A-Z]{1,2}[0-9]{6,9}\b/,
-                driverLicense: /\b[A-Z]{1,2}[0-9]{5,7}\b/,
-                bankAccount: /\b[0-9]{8,17}\b/
-              };
+    const patterns = {
+      ssn: /\b(?!000|666|9\d{2})([0-8]\d{2}|7([0-6]\d|7[012]))([-]?)\d{2}\3\d{4}\b/,
+      creditCard: /\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})\b|\b(?:(?:4[0-9]{3}|5[1-5][0-9]{2}|6[0-9]{3}|3[47][0-9]{2})[- ]?[0-9]{4}[- ]?[0-9]{4}[- ]?[0-9]{4})\b/,
+      dateOfBirth: /\b(0[1-9]|1[0-2])[/-](0[1-9]|[12]\d|3[01])[/-](19|20)\d{2}\b/,
+      email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/,
+      phoneNumber: /\b(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b/,
+      ipAddress: /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/,
+      passportNumber: /\b[A-Z]{1,2}[0-9]{6,9}\b/,
+      driverLicense: /\b[A-Z]{1,2}[0-9]{5,7}\b/,
+      bankAccount: /\b[0-9]{8,17}\b/
+    };
 
-              const sensitiveInfo = {};
-              // Create a proxy object for the document body.
-              const body = context.document.body;
+    const sensitiveInfo = {};
 
-              body.load("text");
-              await context.sync();
-
-              let text = body.text;
-              console.log('document body ', text);
-
-              for (const [type, pattern] of Object.entries(patterns)) {
-                const matches = text.match(pattern);
-                if (matches) {
-                  sensitiveInfo[type] = matches.map(match => ({
-                    value: match,
-                    index: text.indexOf(match)
-                  }));
-                  console.log(type.toUpperCase(), " sensitive");
-                  console.log(type.toUpperCase() + ": " + sensitiveInfo[type][0].value);
+    // Create a proxy object for the document body.
+    const body = context.document.body;
 
 
-                  //body.load(type.toUpperCase() + " detected as sensitive data");
-                  //addInformational(type.toUpperCase() + " detected as sensitive data");
-                  //showError(type.toUpperCase() + ": " + sensitiveInfo[type][0].value);
-                  //break;
-                }
-              }
+    body.load("text");
+    await context.sync();
+
+    let text = body.text;
+    console.log('document body ', text);
+
+    for (const [type, pattern] of Object.entries(patterns)) {
+      const matches = text.match(pattern);
+      if (matches) {
+        sensitiveInfo[type] = matches.map(match => ({
+          value: match,
+          index: text.indexOf(match)
+        }));
+        //console.log(type.toUpperCase(), " sensitive");
+        //console.log(type.toUpperCase() + ": " + sensitiveInfo[type][0].value);
+   
+        //body.load(type.toUpperCase() + " detected as sensitive data");
+        //addInformational(type.toUpperCase() + " detected as sensitive data");
+        //showError(type.toUpperCase() + ": " + sensitiveInfo[type][0].value);
+       // break;
+      }
+    }
+
+    const data = sensitiveInfo;
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        const category = data[key];
+        //console.log(`Category: ${key}`);
+        const comment = context.document.getSelection().insertComment(key.toUpperCase() + ": " + data[key][0].value);
+            comment.load();
+        // Iterate through the array of objects in each category
+        category.forEach(item => {
+          if (item.value) {
+            console.log(`Category: ${key}, Value: ${item.value}, Index: ${item.index}`);
+            
+          } else if (item.index !== undefined) {
+            console.log(`Index: ${item.index}`);
+          }
+        });
+      }
+    }
+    //comment.load();
+    await context.sync();
+
+
+    // } else {
+    // addError('The content of your email is not accessible for policies control.')
+
+    //}
+
+
+    //console.log(JSON.stringify(sensitiveInfo));
+
+  });
+
+
+};
 
 
 
-           // } else {
-             // addError('The content of your email is not accessible for policies control.')
-
-            //}
+async function insertAnnotations() {
 
 
-            console.log(JSON.stringify(sensitiveInfo));
-
-          });
 
 
-      };
-
+}
