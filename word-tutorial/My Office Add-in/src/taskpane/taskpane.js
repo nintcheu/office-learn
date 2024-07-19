@@ -146,7 +146,23 @@ async function insertHTML() {
   await Word.run(async (context) => {
 
     const blankParagraph = context.document.body.paragraphs.getLast().insertParagraph("", Word.InsertLocation.after);
-    blankParagraph.insertHtml('<p style="font-family: verdana;">Inserted HTML.</p><p>Another paragraph</p>', Word.InsertLocation.end);
+    blankParagraph.insertHtml(`<p style="font-family: verdana;"><p>Dear Jane,</p>
+<p>I hope this email finds you well. I wanted to share some important information with you:</p>
+<br/>
+<p>1. My new SSN is 123-45-6789.</p>
+<p>2. My credit card number is 4111-1111-1111-1111 (expiration: 12/25).</p>
+<p>3. I was born on 05/12/1980.</p>
+<p>4. My phone number has changed to +1 (555) 123-4567.</p>
+<p>5. Please use my work email: john.doe@work.com for future correspondence.</p>
+<p>6. The company's server IP is 192.168.1.1.</p>
+<p>7. My passport number is AB1234567.</p>
+<p>8. My driver's license number is X123456.</p>
+<p>9. My bank account number is 1234567890123456.</p>
+<br/>
+<p>Please keep this information confidential.</p>
+<br/>
+<p>Best regards,</p>
+<p>John Doe</p>`, Word.InsertLocation.end);
 
     await context.sync();
   });
@@ -211,7 +227,7 @@ async function checkSensitviteInformation() {
       phoneNumber: /\b(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b/,
       ipAddress: /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/,
       passportNumber: /\b[A-Z]{1,2}[0-9]{6,9}\b/,
-      driverLicense: /\b[A-Z]{1,2}[0-9]{5,7}\b/,
+      driverLicense: /\b[A-Z]{1}[0-9]{5,7}\b/,
       bankAccount: /\b[0-9]{8,17}\b/
     };
 
