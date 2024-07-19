@@ -31,7 +31,7 @@ async function insertParagraph() {
   await Word.run(async (context) => {
 
     const docBody = context.document.body;
-    docBody.insertParagraph("Office has several versions, including Office 2016, Microsoft 365 subscription, and Office on the web.",
+    docBody.insertParagraph("John's SSN is 123-45-6789 and his credit card number is 4111111111111111. He was born on 05/12/1980",
                             Word.InsertLocation.start);
 
       await context.sync();
@@ -213,7 +213,11 @@ async function replaceContentInControl() {
               // Create a proxy object for the document body.
               const body = context.document.body;
 
+              body.load("text");
+              await context.sync();
+
               let text = body.text;
+              console.log('document body ', text);
 
               for (const [type, pattern] of Object.entries(patterns)) {
                 const matches = text.match(pattern);
@@ -225,10 +229,11 @@ async function replaceContentInControl() {
                   console.log(type.toUpperCase(), " sensitive");
                   console.log(type.toUpperCase() + ": " + sensitiveInfo[type][0].value);
 
+
                   //body.load(type.toUpperCase() + " detected as sensitive data");
                   //addInformational(type.toUpperCase() + " detected as sensitive data");
                   //showError(type.toUpperCase() + ": " + sensitiveInfo[type][0].value);
-                  break;
+                  //break;
                 }
               }
 
@@ -240,7 +245,6 @@ async function replaceContentInControl() {
             //}
 
 
-            await context.sync();
             console.log(JSON.stringify(sensitiveInfo));
 
           });
