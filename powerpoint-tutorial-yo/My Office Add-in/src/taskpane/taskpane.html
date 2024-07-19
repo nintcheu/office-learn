@@ -20,8 +20,6 @@
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="ms-font-m ms-welcome ms-Fabric">
-    <!-- The following image URL tracks diagnostic data for this sample add-in. Please remove the image tag if you reuse this sample in your own code project. -->
-    <img src="https://pnptelemetry.azurewebsites.net/pnp-officeaddins/samples/office-powerpoint-add-in-tutorial-yo-run" />
 
     <header id="content-header">
         <div class="ms-Grid ms-bgColor-neutralPrimary">
@@ -35,8 +33,10 @@
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
         <div class="padding">
-            <button class="ms-Button" id="insert-image">Insert Image</button><br/><br/>
             <button class="ms-Button" id="insert-text">Insert Text</button><br/><br/>
+            <button class="ms-Button" id="validate-text">Validate Text</button><br/><br/>
+            
+            <button class="ms-Button" id="insert-image">Insert Image</button><br/><br/>
             <button class="ms-Button" id="get-slide-metadata">Get Slide Metadata</button><br/><br/>
             <button class="ms-Button" id="add-slides">Add Slides</button><br/><br/>
             <button class="ms-Button" id="go-to-first-slide">Go to First Slide</button><br/><br/>

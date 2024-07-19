@@ -148,39 +148,6 @@
         });
       }
 
-      /**
-       * 
-       * @param {string} text 
-       * 
-       * @returns JSON
-       * {
-            ssn: [{ value: '123-45-6789', index: 13 }],
-            creditCard: [{ value: '4111111111111111', index: 47 }],
-            dateOfBirth: [{ value: '05/12/1980', index: 86 }]
-          } 
-       */
-      function detectSensitiveInfo(text) {
-        const patterns = {
-          ssn: /\b(?!000|666|9\d{2})([0-8]\d{2}|7([0-6]\d|7[012]))([-]?)\d{2}\3\d{4}\b/,
-          creditCard: /\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})\b/,
-          dateOfBirth: /\b(0[1-9]|1[0-2])[/-](0[1-9]|[12]\d|3[01])[/-](19|20)\d{2}\b/
-        };
-
-        const results = {};
-
-        for (const [type, pattern] of Object.entries(patterns)) {
-          const matches = text.match(pattern);
-          if (matches) {
-            results[type] = matches.map(match => ({
-              value: match,
-              index: text.indexOf(match)
-            }));
-          }
-        }
-
-        return results;
-      }
-
       // When the settings icon is selected, open the settings dialog.
       $('#settings-icon').on('click', function () {
         // Display settings dialog.
