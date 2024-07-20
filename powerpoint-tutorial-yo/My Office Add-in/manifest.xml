@@ -11,6 +11,7 @@
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
     <AppDomain>https://www.contoso.com</AppDomain>
+    <AppDomain>https://studious-space-system-g47q46w467wcp445-3000.app.github.dev</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Presentation"/>
