@@ -6,13 +6,13 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Git the gist"/>
   <Description DefaultValue="Allows users to access their GitHub gists."/>
-  <IconUrl DefaultValue="${ADDIN_URL}/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="${ADDIN_URL}/assets/icon-128.png"/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
     <AppDomain>https://www.contoso.com</AppDomain>
-    <AppDomain>${ADDIN_URL}</AppDomain>
-    <AppDomain>${CROSSDOMAIN_URL}</AppDomain>
+    <AppDomain>https://localhost:3000</AppDomain>
+    <AppDomain>https://localhost</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox"/>
@@ -25,7 +25,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="${ADDIN_URL}/taskpane.html"/>
+        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -88,13 +88,13 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="${ADDIN_URL}/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="${ADDIN_URL}/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="${ADDIN_URL}/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="${ADDIN_URL}/commands.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="${ADDIN_URL}/taskpane.html"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Git the gist"/>
